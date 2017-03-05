@@ -1,5 +1,5 @@
 var tvShows = [
-	"Breaking Bad", "Prison Break", "Game of Thrones", "Boardwalk Empire", "Westworld", "The Wire", "Mad Men", "Narcos", "Seinfeld", "Friends", "How I Met Your Mother", "The Big Bang Theory", "The Simpsons", "Family Guy", "South Park", "Dexter", "The X-Files", "House of Cards", "Hannibal", "Suits", "Vikings"
+	"Breaking Bad", "Prison Break", "Game of Thrones", "The Walking Dead", "Boardwalk Empire", "Westworld", "The Wire", "Mad Men", "Narcos", "Seinfeld", "Friends", "How I Met Your Mother", "The Big Bang Theory", "The Simpsons", "Family Guy", "South Park", "Dexter", "The X-Files", "House of Cards", "Hannibal", "Suits", "Vikings"
 ]
 
 var keyOptions = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x" , "c", "v", "b", "n", "m", "-", " "]
