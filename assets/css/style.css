@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'Simplifica';
+    src: url('../fonts/simplifica/Simplifica.ttf');
+}
+
+:root {
+	--themeColor: #2b333b;
+	--backgroundColor: #ccc;
+}
+
+body {
+	background-color: var(--backgroundColor);
+}
+
+.jumbotron, .panel-default > .panel-heading, .footer {
+	background-color: var(--themeColor);
+	background-image: none;
+	color: white;
+}
+
+.jumbotron {
+	margin: 15 0 20 0;
+	text-align: center;
+}
+
+.panel-default {
+	margin-left: 15px;
+	font-size: 18px;
+	border-color: var(--themeColor);
+}
+
+.tvShow {
+	margin-right: 15px;
+	text-align: center;
+	font-size: 24px;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+
+#spaces {
+	letter-spacing: 10px;
+}
+
+.img-thumbnail {
+	margin-left: 70px;
+	margin-right: 0px;
+	border-color: var(--themeColor);
+	width: 680px;
+	height: 470px;
+}
+
+.footer {
+/*	position: absolute;
+    bottom: 0;*/
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--themeColor);
+	font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.text-muted {
+	text-align: center;
+	padding-top: 16px;
+	font-size: 14px;
+	color: white;
+}
