@@ -14,6 +14,31 @@ String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
+// Reset TV Show name, Guesses Remaining and Letters Gussed
+function reset() {
+	guessesRemaining = totalGuesses;
+	(document.getElementById("guesses")).textContent = guessesRemaining;
+	guessedLetters = [];
+	(document.getElementById("guessedLetters")).textContent = guessedLetters;
+	(document.getElementById("spaces")).style.letterSpacing = 10;
+	(document.getElementById("spaces")).textContent = "_____";
+	(document.getElementById("image")).src = "assets/images/Initial.png";
+	n = 0;
+	j = 0;
+}
+
+// Start Game
+function playGame() {
+	document.getElementById("button").blur();
+	reset();
+	play = true;
+	gameEnded = false;
+	pickTvShow();
+	(document.getElementById("guesses")).textContent = totalGuesses;
+	// Update spaces for TV Show name
+	(document.getElementById("spaces")).textContent = spaces;
+}
+
 // Pick random TV Show
 function pickTvShow() {
 	currentTvShow = tvShows[Math.floor(Math.random() * tvShows.length)];
@@ -27,6 +52,7 @@ function pickTvShow() {
 			spaces = spaces.concat("_");
 		}
 	}
+	var spacesLetters = spaces.split("");
 }
 
 var n = 0;
@@ -35,39 +61,15 @@ var play = false;
 var gameEnded = false;
 var guessesRemaining = totalGuesses;
 
-function reset() {
-	guessesRemaining = totalGuesses;
-	(document.getElementById("guesses")).textContent = guessesRemaining;
-	guessedLetters = [];
-	(document.getElementById("guessedLetters")).textContent = guessedLetters;
-	(document.getElementById("spaces")).style.letterSpacing = 10;
-	(document.getElementById("spaces")).textContent = "_____";
-	(document.getElementById("image")).src = "assets/images/Initial.png";
-	n = 0;
-	j = 0;
-}
-
-function playGame() {
-	document.getElementById("button").blur();
-	reset();
-	play = true;
-	gameEnded = false;
-	pickTvShow();
-	(document.getElementById("guesses")).textContent = totalGuesses;
-	// Update spaces for TV Show name
-	(document.getElementById("spaces")).textContent = spaces;
-}
-
 // When user presses any key...
 document.onkeyup = function(event) {
 	userLetter = (event.key).toLowerCase();
 	if (keyOptions.indexOf(userLetter) !== -1 && play === true) {
-		// Do this starting from the second key press & if the user wants to keep playing
+		// Do this if the user wants to keep playing
 		if (gameEnded === false) {
 			// Check if guessed letter is contained in TV Show name
 			var correct = false;
 			for (var i = 0; i < letters.length; i++) {
-				var spacesLetters = spaces.split("");
 				if (userLetter === letters[i].toLowerCase()) {
 					spaces = spaces.replaceAt(i, letters[i]);
 					correct = true;
