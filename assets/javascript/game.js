@@ -1,13 +1,18 @@
 var tvShows = [
 	"Breaking Bad", "Prison Break", "Game of Thrones", "The Walking Dead", "Boardwalk Empire", "Westworld", "The Wire", "Mad Men", "Narcos", "Seinfeld", "Friends", "How I Met Your Mother", "The Big Bang Theory", "The Simpsons", "Family Guy", "South Park", "Dexter", "The X-Files", "House of Cards", "Hannibal", "Suits", "Vikings"
-]
+];
 
-var keyOptions = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x" , "c", "v", "b", "n", "m", "-", " "]
+var keyOptions = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x" , "c", "v", "b", "n", "m", "-", " "];
 
-var wins = 0;
-var losses = 0;
-var totalGuesses = 7;
-var guessedLetters = [];
+var wins = 0,
+	losses = 0,
+	totalGuesses = 7,
+	guessedLetters = [],
+	n = 0,
+	j = 0,
+	play = false,
+	gameEnded = false,
+	guessesRemaining = totalGuesses;
 
 // Function to replace character
 String.prototype.replaceAt=function(index, character) {
@@ -55,11 +60,37 @@ function pickTvShow() {
 	var spacesLetters = spaces.split("");
 }
 
-var n = 0;
-var j = 0;
-var play = false;
-var gameEnded = false;
-var guessesRemaining = totalGuesses;
+function newGame() {
+	// When user won
+	if (spaces.indexOf("_") === -1) {
+		setTimeout(function() { 
+			nextGame = confirm("You won!\n\nDo you want to play again?");
+			if (nextGame) {
+				playGame();
+			}
+			else {
+				reset();
+				gameEnded = true;
+				play = false;
+			}
+		}, 100);
+	}
+
+	// When user lost
+	if (guessesRemaining === 0) {
+		setTimeout(function() { 
+			nextGame = confirm("You lost. The TV Show was: " + currentTvShow + ".\n\nDo you want to play again?");
+			if (nextGame) {
+				playGame();
+			}
+			else {
+				reset();
+				gameEnded = true;
+				play = false;
+			}
+		}, 100);
+	}
+}
 
 // When user presses any key...
 document.onkeyup = function(event) {
@@ -80,7 +111,7 @@ document.onkeyup = function(event) {
 				(document.getElementById("spaces")).textContent = spaces;
 			}
 			
-			// Check if key press is not among guessed letters
+			// Check if key pressed is not among guessed letters
 			if (guessedLetters.indexOf(userLetter.toUpperCase()) === -1) {
 
 				// Update letters guessed
@@ -127,37 +158,5 @@ document.onkeyup = function(event) {
 		}
 
 		n++
-	}
-}
-
-function newGame() {
-	// When user won
-	if (spaces.indexOf("_") === -1) {
-		setTimeout(function() { 
-			nextGame = confirm("You won!\n\nDo you want to play again?");
-			if (nextGame) {
-				playGame();
-			}
-			else {
-				reset();
-				gameEnded = true;
-				play = false;
-			}
-		}, 100);
-	}
-
-	// When user lost
-	if (guessesRemaining === 0) {
-		setTimeout(function() { 
-			nextGame = confirm("You lost. The TV Show was: " + currentTvShow + ".\n\nDo you want to play again?");
-			if (nextGame) {
-				playGame();
-			}
-			else {
-				reset();
-				gameEnded = true;
-				play = false;
-			}
-		}, 100);
 	}
 }
